@@ -235,35 +235,7 @@
     }
   </style>
 </head>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-<script>
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    databaseURL: "YOUR_DATABASE_URL",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-  };
-
-  // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const database = firebase.database();
-
-  // Submit form and store email
-  document.getElementById("email-form").addEventListener("submit", function(e) {
-    e.preventDefault();
-    const email = document.getElementById("email").value;
-
-    // Push email to Firebase Realtime Database
-    database.ref('subscribers').push({ email: email });
-
-    alert("You have successfully subscribed!");
-  });
-</script>
+ 
 
 <body>
   <header>
@@ -380,8 +352,10 @@
     &copy; 2025 Sinthipoma. All rights reserved.
   </footer>
  
+<!-- Firebase SDKs -->
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
   <script>// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -421,6 +395,28 @@ const analytics = getAnalytics(app);
     }).catch((error) => {
       alert("There was an error: " + error.message);
     });
+  });
+</script>
+
+  <script>
+  document.getElementById("email-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById("email").value.trim();
+
+    if (email) {
+      firebase.database().ref("subscribers").push({
+        email: email,
+        timestamp: Date.now()
+      }).then(() => {
+        alert("Thank you for subscribing!");
+        document.getElementById("email").value = "";
+      }).catch((error) => {
+        alert("Error: " + error.message);
+      });
+    } else {
+      alert("Please enter a valid email.");
+    }
   });
 </script>
 
