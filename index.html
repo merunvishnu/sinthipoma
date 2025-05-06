@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sinthipoma</title>
   <style>
     * {
@@ -35,64 +35,6 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
-    .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.6);
-  }
-
-  .modal-content {
-    background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 90%;
-    max-width: 700px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #000;
-    position: relative;
-  }
-
-  .close {
-    color: #aaa;
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .close:hover {
-    color: black;
-  }
-
-  .article-card {
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
-    max-width: 600px;
-  }
-
-  .article-content .read-more {
-    margin-top: 10px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .article-content .read-more:hover {
-    background-color: #0056b3;
-  }
 
     nav {
       display: flex;
@@ -108,12 +50,10 @@
     }
 
     .hero-image {
-      
       width: 100%;
       height: 75vh;
       background: url('https://raw.githubusercontent.com/merunvishnu/sinthipoma/main/full-shot-family-running-meadow.jpg') no-repeat center center/contain;
       background-color: white;
-      
     }
 
     .who-creators {
@@ -171,12 +111,23 @@
       text-align: center;
     }
 
-    iframe {
+    .submit-section input {
+      padding: 10px;
+      width: 250px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: 1px solid #aaa;
+      margin-right: 10px;
+    }
+
+    .submit-section button {
+      padding: 10px 20px;
+      background: #000045;
+      color: white;
       border: none;
-      width: 100%;
-      max-width: 800px;
-      height: 800px;
-      margin-top: 20px;
+      border-radius: 20px;
+      font-size: 1rem;
+      cursor: pointer;
     }
 
     footer {
@@ -186,17 +137,7 @@
       color: white;
     }
 
-    button {
-      padding: 12px 25px;
-      background: #000045;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -220,143 +161,58 @@
         padding: 0 10px;
       }
 
-      .article-card {
-        min-width: 90%;
+      .submit-section input {
+        width: 100%;
+        margin-bottom: 10px;
       }
-      .full-article {
-  margin-top: 10px;
-  color: #444;
-}
 
-
-      iframe {
-        height: 500px;
+      .submit-section button {
+        width: 100%;
       }
     }
   </style>
 </head>
- 
-
 <body>
-  <header>
-    <div class="logo">Sinthipoma</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#who">About</a>
-      <a href="#submit">Submit</a>
-    </nav>
-  </header>
 
-  <div class="hero-image"></div>
-  
- <!-- Join Us Section -->
-<section class="join-us">
-  <h2>Join Us to Get Blog Updates</h2>
-  <p>Enter your email below to stay updated with the latest blog posts!</p>
+<header>
+  <div class="logo">Sinthipoma</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Blog</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<div class="hero-image"></div>
+
+<section class="who-creators">
+  <h2>Who Are We?</h2>
+  <p>We are passionate storytellers who write meaningful blogs to connect and inspire.</p>
+</section>
+
+<!-- 📧 Email Form Section -->
+<section class="submit-section">
+  <h2>Join Our Mailing List</h2>
   <form id="email-form">
     <input type="email" id="email" placeholder="Enter your email" required />
     <button type="submit">Join Us</button>
   </form>
+  <p id="message" style="margin-top: 10px; color: green;"></p>
 </section>
 
+<footer>
+  <p>&copy; 2025 Sinthipoma. All rights reserved.</p>
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
+<script>
+  // Your Firebase configuration
 
 
-  <section class="who-creators" id="who">
-    <h2>Who our creators are !</h2>
-    <p>Our creators come from all walks of life, each bringing their own story and passion to the table. From students to professionals, artists to adventurers, and even everyday dreamers, everyone contributes their unique perspective and creativity. We believe that everyone has something valuable to share, and this platform is a space for those stories to shine. Whether it’s through writing, photography, art, or personal experiences, our creators help shape a diverse and dynamic community. Join us in celebrating the voices that make this space truly one-of-a-kind.</p>
-  </section>
-
-  <section class="recent-articles">
-    <h2 style="text-align:center;">Recent Articles</h2>
-     <div class="scroll-container">
-
-  <!-- Article 1 -->
-  <div class="article-card">
-    <img src="your-image.jpg" alt="Article Image" />
-    <div class="article-content">
-      <h3>Article Title</h3>
-      <p class="preview">
-        when speaking about the federal system means that a state....
-      </p>
-      <button class="read-more" onclick="openModal('article1')">Read more</button>
-    </div>
-  </div>
-  <div id="article1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('article1')">&times;</span>
-      <h2>Full Article Title</h2>
-      <p>
-        when speaking about the federal system, federal system means that a state in a country has the full rights to implement their own systems and schemes without any authorisation from the union government but union government has the power to cancel the scheme or system if is not useful and create any confusion among the people, but in india the state cannot perform much task by itself. if a scheme is to be released to the people it should firstly approved by the governor(representative of the state to the union).in india we have constitution for all the states that we have one constitution for the entire country but in US they have 51 constitutions(50 state constitution+1 federal constitution). In INDIA a parliament can change the state boundaries at anytime, in US the state boundaries cannot be changed by the federal government. judicial- we have supreme court at the top,wheras hey have separate federal and state governments, we do also have state courts but that is not much as powerful as supreme court but they have equal power for both the federal and the state. constitution amendments- the Indian parliament can alter the constitution without any permission from the states but in us if a single constitution needs to be changed it needs approval from both the federal and the state governments.during emergencies- Indian government can take full control of all the states but in US there is no such rule eventhough there is an much emergency situation the federal government cannot take control of the state government t and all power remains same with the state at any cost.if i need explain in a single example, Indian government can make a new state like Telangana n 2014 and reorganisation of jammu and Kashmir in 2019, but us deral government could not do like this , i needs approval from both states/federal government and the approval of the congress(senate + house of representatives)
-
-      </p>
-    </div>
-  </div>
-       
-
-  <!-- Article 2 -->
-  <div class="article-card">
-    <img src="your-image.jpg" alt="Article Image" />
-    <div class="article-content">
-      <h3>Article Title</h3>
-      <p class="preview">
-        This is a short summary of the article content...
-      </p>
-      <button class="read-more" onclick="openModal('article1')">Read more</button>
-    </div>
-  </div>
-  <div id="article1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('article1')">&times;</span>
-      <h2>Full Article Title</h2>
-      <p>
-        This is the full article content. You can include long paragraphs, images, and more here.
-      </p>
-    </div>
-  </div>
-    
-
-  <!-- Article 3 -->
-  <div class="article-card">
-    <img src="your-image.jpg" alt="Article Image" />
-    <div class="article-content">
-      <h3>Article Title</h3>
-      <p class="preview">
-        This is a short summary of the article content...
-      </p>
-      <button class="read-more" onclick="openModal('article1')">Read more</button>
-    </div>
-  </div>
-  <div id="article1" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('article1')">&times;</span>
-      <h2>Full Article Title</h2>
-      <p>
-        This is the full article content. You can include long paragraphs, images, and more here.
-      </p>
-    </div>
-  </div>
-</div>
-  </section>
-
-  <section class="submit-section" id="submit">
-    <h2>Submit a Blog</h2>
-    <p>We'd love to hear from you! Fill out the form below to submit your blog.</p>
-    
-    <iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSdCFAJzj40D9FkfLu_KoYTOnQ36XRExTjevTeAHvwB4KYgVXg/viewform?usp=header" 
-      allowfullscreen>
-    </iframe>
-  </section>
-
-  <footer>
-    &copy; 2025 Sinthipoma. All rights reserved.
-  </footer>
- 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-  <script>// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -378,50 +234,31 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-  </script>
-  <script>
-  document.getElementById("email-form").addEventListener("submit", function (e) {
+
+
+
+  // Handle form submission
+  document.getElementById('email-form').addEventListener('submit', function(e) {
     e.preventDefault();
-
-    // Get the email input value
-    const email = document.getElementById("email").value;
-
-    // Store the email in Firebase Realtime Database
-    database.ref('subscribers').push({
-      email: email
-    }).then(() => {
-      alert("You have successfully subscribed!");
-      document.getElementById("email").value = ""; // Clear the input field
-    }).catch((error) => {
-      alert("There was an error: " + error.message);
-    });
-  });
-</script>
-
-  <script>
-  document.getElementById("email-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const email = document.getElementById("email").value.trim();
+    const emailInput = document.getElementById('email');
+    const email = emailInput.value.trim();
+    const message = document.getElementById('message');
 
     if (email) {
-      firebase.database().ref("subscribers").push({
+      // Save to Firebase
+      database.ref('emails').push({
         email: email,
-        timestamp: Date.now()
+        timestamp: new Date().toISOString()
       }).then(() => {
-        alert("Thank you for subscribing!");
-        document.getElementById("email").value = "";
+        message.textContent = 'Thank you for joining!';
+        emailInput.value = '';
       }).catch((error) => {
-        alert("Error: " + error.message);
+        message.textContent = 'Something went wrong. Please try again.';
+        console.error(error);
       });
-    } else {
-      alert("Please enter a valid email.");
     }
   });
 </script>
 
-
 </body>
-  
-
 </html>
