@@ -28,6 +28,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -35,10 +36,16 @@
       font-weight: bold;
     }
 
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 10px 15px;
       font-weight: bold;
     }
 
@@ -60,6 +67,12 @@
       margin-bottom: 20px;
     }
 
+    .who-creators p {
+      font-size: 1.1rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
     .recent-articles {
       padding: 40px 20px;
       background-color: #fff9f2;
@@ -79,6 +92,7 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      flex-shrink: 0;
     }
 
     .article-card img {
@@ -121,6 +135,39 @@
       font-size: 1rem;
       cursor: pointer;
     }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+
+      .who-creators h2 {
+        font-size: 1.8rem;
+      }
+
+      .who-creators p {
+        font-size: 1rem;
+        padding: 0 10px;
+      }
+
+      .article-card {
+        min-width: 90%;
+      }
+
+      iframe {
+        height: 500px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -133,9 +180,7 @@
     </nav>
   </header>
 
-  <div class="hero-image">
-    <!-- The logo is displayed as background image -->
-  </div>
+  <div class="hero-image"></div>
 
   <section class="who-creators" id="who">
     <h2>Who our creators are !</h2>
@@ -164,15 +209,10 @@
     <h2>Submit a Blog</h2>
     <p>We'd love to hear from you! Fill out the form below to submit your blog.</p>
     
-    <<iframe 
-      src="https://docs.google.com/forms/d/e/1FAIpQLSdCFAJzj40D9FkfLu_KoYTOnQ36XRExTjevTeAHvwB4KYgVXg/viewform?embedded=true" 
-      width="700" 
-      height="520" 
-      frameborder="0" 
-      marginheight="0" 
-      marginwidth="0">Loading…</iframe>
-    
-    <p>Submitted by: merunkumara</p>
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSdCFAJzj40D9FkfLu_KoYTOnQ36XRExTjevTeAHvwB4KYgB9A/viewform?embedded=true" 
+      allowfullscreen>
+    </iframe>
   </section>
 
   <footer>
