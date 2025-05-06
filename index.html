@@ -165,6 +165,11 @@
       .article-card {
         min-width: 90%;
       }
+      .full-article {
+  margin-top: 10px;
+  color: #444;
+}
+
 
       iframe {
         height: 500px;
@@ -195,24 +200,32 @@
     <h2 style="text-align:center;">Recent Articles</h2>
      <div class="scroll-container">
 
-    <div class="article-card">
-    <img src="your-image.jpg" alt="Article Image" />
-    <div class="article-content">
-     <h3>Article Title</h3>
-       <p class="preview">
-       This is a short summary of the article content...
-       </p>
-     <a href="full-article.html" class="read-more">Read more</a>
-      </div>
-       </div>
-    <div class="article-card">
-  <img src="https://raw.githubusercontent.com/merunvishnu/sinthipoma/main/crystal-ball-with-red-light.jpg" alt="Article Image" />
+   <div class="article-card">
+  <img src="your-image.jpg" alt="Article Image" />
+  <div class="article-content">
+    <h3>Article Title</h3>
+    <p class="preview">
+      In a world flodded with filtered...
+    </p>
+    <a href="#" class="read-more" onclick="toggleArticle(this)">Read more</a>
+    <div class="full-article" style="display: none;">
+      <p>In a world flooded with filtered perfection and fleeting trends, Sinthipoma was born from something quieter — a need to simply express. What began as a late-night idea between a few curious minds has grown into a digital space where authenticity thrives.
+This is the story of why we created a platform where voices, no matter how small, could matter. Where everyday thoughts could become something powerful.</p>
+    </div>
+  </div>
+</div>
+       
+<div class="article-card">
+  <img src="your-image.jpg" alt="Article Image" />
   <div class="article-content">
     <h3>Article Title</h3>
     <p class="preview">
       This is a short summary of the article content...
     </p>
-    <a href="full-article.html" class="read-more">Read more</a>
+    <a href="#" class="read-more" onclick="toggleArticle(this)">Read more</a>
+    <div class="full-article" style="display: none;">
+      <p>This is the full article content. You can put as much content here as you like. It stays hidden until the user clicks “Read more.”</p>
+    </div>
   </div>
 </div>
     
@@ -223,7 +236,10 @@
     <p class="preview">
       This is a short summary of the article content...
     </p>
-    <a href="full-article.html" class="read-more">Read more</a>
+    <a href="#" class="read-more" onclick="toggleArticle(this)">Read more</a>
+    <div class="full-article" style="display: none;">
+      <p>This is the full article content. You can put as much content here as you like. It stays hidden until the user clicks “Read more.”</p>
+    </div>
   </div>
 </div>
 </div>
@@ -243,4 +259,17 @@
     &copy; 2025 Sinthipoma. All rights reserved.
   </footer>
 </body>
+  <script>
+  function toggleArticle(link) {
+    const fullArticle = link.nextElementSibling;
+    if (fullArticle.style.display === "none") {
+      fullArticle.style.display = "block";
+      link.textContent = "Read less";
+    } else {
+      fullArticle.style.display = "none";
+      link.textContent = "Read more";
+    }
+  }
+</script>
+
 </html>
