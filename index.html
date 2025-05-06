@@ -235,6 +235,36 @@
     }
   </style>
 </head>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_AUTH_DOMAIN",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_STORAGE_BUCKET",
+    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+    appId: "YOUR_APP_ID"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const database = firebase.database();
+
+  // Submit form and store email
+  document.getElementById("email-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+
+    // Push email to Firebase Realtime Database
+    database.ref('subscribers').push({ email: email });
+
+    alert("You have successfully subscribed!");
+  });
+</script>
+
 <body>
   <header>
     <div class="logo">Sinthipoma</div>
@@ -247,7 +277,7 @@
 
   <div class="hero-image"></div>
   
-  <!-- Join Us Section -->
+ <!-- Join Us Section -->
 <section class="join-us">
   <h2>Join Us to Get Blog Updates</h2>
   <p>Enter your email below to stay updated with the latest blog posts!</p>
@@ -349,23 +379,52 @@
   <footer>
     &copy; 2025 Sinthipoma. All rights reserved.
   </footer>
-  <script>
-    function openModal(id) {
-      document.getElementById(id).style.display = "block";
-    }
+ 
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+  <script>// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-    function closeModal(id) {
-      document.getElementById(id).style.display = "none";
-    }
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyAx51-wblyneOuivWKQ2-79ytkxTI50kJI",
+  authDomain: "sinthipoma-1f149.firebaseapp.com",
+  databaseURL: "https://sinthipoma-1f149-default-rtdb.firebaseio.com",
+  projectId: "sinthipoma-1f149",
+  storageBucket: "sinthipoma-1f149.firebasestorage.app",
+  messagingSenderId: "405888405696",
+  appId: "1:405888405696:web:2ebe2cf292600a8716dd25",
+  measurementId: "G-RH38VY20T5"
+};
 
-    window.onclick = function(event) {
-      document.querySelectorAll(".modal").forEach(modal => {
-        if (event.target === modal) {
-          modal.style.display = "none";
-        }
-      });
-    };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
   </script>
+  <script>
+  document.getElementById("email-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Get the email input value
+    const email = document.getElementById("email").value;
+
+    // Store the email in Firebase Realtime Database
+    database.ref('subscribers').push({
+      email: email
+    }).then(() => {
+      alert("You have successfully subscribed!");
+      document.getElementById("email").value = ""; // Clear the input field
+    }).catch((error) => {
+      alert("There was an error: " + error.message);
+    });
+  });
+</script>
+
+
 </body>
   
 
