@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Articles - Sinthipoma</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+    header, footer {
+      background-color: #000045;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .articles-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .article-card {
+      background: white;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    .article-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .article-card .content {
+      padding: 15px;
+    }
+    .article-card button {
+      margin-top: 10px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .article-card button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>All Articles</h1>
+</header>
+
+<div class="articles-container" id="all-articles">
+  <!-- Article cards go here -->
+</div>
+
+<footer>
+  <p>© 2025 Sinthipoma</p>
+</footer>
+
+<script>
+  const articles = [
+    {
+      title: "Article 6",
+      img: "https://via.placeholder.com/800x400",
+      text: "This is article 6 description.",
+      full: "Full content for article 6 goes here..."
+    },
+    {
+      title: "Article 7",
+      img: "https://via.placeholder.com/800x400",
+      text: "This is article 7 description.",
+      full: "Full content for article 7 goes here..."
+    },
+    // Add more articles as needed
+  ];
+
+  const container = document.getElementById('all-articles');
+
+  articles.forEach(article => {
+    const card = document.createElement('div');
+    card.className = 'article-card';
+
+    card.innerHTML = `
+      <img src="${article.img}" alt="${article.title}">
+      <div class="content">
+        <h3>${article.title}</h3>
+        <p>${article.text}</p>
+        <button onclick="showPopup('${article.full.replace(/'/g, "\\'")}')">Read More</button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+
+  function showPopup(content) {
+    alert(content); // You can replace this with a modal popup like on the homepage
+  }
+</script>
+
+</body>
+</html>
